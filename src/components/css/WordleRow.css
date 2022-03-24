@@ -1,15 +1,30 @@
-:local(.wordle) {
-    background-color: darkblue;
+.wordle {
+    --width: minmax(60px, 15vw);
+    --round: calc(var(--round) * 0.1);
+    display: block;
+    width: var(--width);
+    height: var(--width);
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 255, .4);
+    border: 1px solid;
+    border-radius: var(--round);
+}
+.wordle > p {
+    margin: auto;
+    padding: 0;
 }
 
-:local(.active) {
-    background-color: cadetblue;
+.active {
+    background-color: rgba(0, 255, 255, .4);
 }
 
-:local(.wrong-pos) {
-    background-color: goldenrod;
+.wrong-pos {
+    background-color: rgba(255, 255, 0, .4);
 }
 
-:local(.right-pos) {
-    background-color: chartreuse;
+.right-pos {
+    background-color: rgba(0, 255, 0, .4);
 }

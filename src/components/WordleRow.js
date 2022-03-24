@@ -7,8 +7,8 @@ function WordleRow({typedInput, typePos, coloringCall, isActiveRow})
     let [coloring, setColoring] = useState(coloringCall());
 
     const getClassName = (idx) => {
-        code = coloring[idx];
-        cName = (typePos === idx && isActiveRow) ? "wordle active" : "wordle";
+        let code = coloring[idx];
+        let cName = (typePos === idx && isActiveRow) ? "wordle active" : "wordle";
         switch (code) {
             case -1: return cName + " wrong-pos";
             case  1: return cName + " right-pos";
@@ -16,9 +16,9 @@ function WordleRow({typedInput, typePos, coloringCall, isActiveRow})
         return cName;
     }
 
-    useEffect(() => setColoring(coloringCall()), [isActiveRow]);
+    useEffect(() => setColoring(coloringCall()), [isActiveRow, coloringCall]);
 
-    return <>{typedInput.map( (ch, idx) => <button className={getClassName(idx)}>ch</button>)}</>
+    return <>{typedInput.map( (ch, idx) => <div key={idx} className={getClassName(idx)}><p>{ch}</p></div>)}</>
 }
 
 export default WordleRow
