@@ -1,0 +1,20 @@
+:local(.keyboard) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+:local(.keyrow) {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+:local(.letter) {
+    --width: minmax(50px, 9vw);
+    --round: calc(var(--width) * 0.1);
+    display: inline;
+    width: var(--width);
+    height: var(--width);
+    border-radius: var(--round);
+    border: 1px solid;
+}

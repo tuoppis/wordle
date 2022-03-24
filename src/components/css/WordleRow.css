@@ -1,0 +1,15 @@
+:local(.wordle) {
+    background-color: darkblue;
+}
+
+:local(.active) {
+    background-color: cadetblue;
+}
+
+:local(.wrong-pos) {
+    background-color: goldenrod;
+}
+
+:local(.right-pos) {
+    background-color: chartreuse;
+}

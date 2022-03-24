@@ -1,0 +1,7 @@
+:local(#game-header) {
+    display: block;
+}
+
+:local(#game-control) {
+    display: flex;
+}
