@@ -36,6 +36,17 @@ function WordleHandler()
         setWord(word.toUpperCase());
         setPrimeScore(en_words_5_letters[word]);
         setGuesses(ArrayOfArrays(rowCount, colCount, ""));
+
+        for (let child of document.getElementById("keyrow1").children) {
+            child.disabled = false;
+        }
+        for (let child of document.getElementById("keyrow2").children) {
+            child.disabled = false;
+        }
+        for (let child of document.getElementById("keyrow3").children) {
+            child.disabled = false;
+        }
+        
         setCanGuess(false);
         setActiveRow(0);
         setActiveCol(0);
