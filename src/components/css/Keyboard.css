@@ -1,0 +1,47 @@
+#keyboard {
+    display: grid;
+    grid-template-columns: auto, auto;
+    align-items: center;
+    justify-items: center;
+}
+
+.keyrow {
+    align-content: center;
+    justify-content: center;
+}
+
+#keyboard > button {
+    border: 1px solid;
+    font-size: 1rem;
+    /* font-style: italic; */
+}
+
+#keyrow1 {
+    grid-column: 1/1;
+    grid-row: 1/1;
+}
+
+#keyrow2 {
+    grid-column: 1/1;
+    grid-row: 2/2;
+}
+
+#keyrow3 {
+    grid-column: 1/1;
+    grid-row: 3/3;
+}
+
+#keyDEL {
+    grid-column: 2/2;
+    grid-row: 1/1;
+}
+
+#keyENTER {
+    grid-column: 2/2;
+    grid-row: 2/2;
+}
+
+#keyNEXT {
+    grid-column: 2/2;
+    grid-row: 3/3;
+}

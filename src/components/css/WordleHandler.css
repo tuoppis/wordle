@@ -1,7 +1,6 @@
 #game-header {
     display: block;
 }
-
-#game-control {
-    display: flex;
+#game-header > * {
+    margin: 0;
 }

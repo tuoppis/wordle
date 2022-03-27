@@ -8,6 +8,7 @@
     font-weight: bold;
     margin: 0;
     padding: 0;
+    justify-items: center;
     background-color: rgba(0, 0, 255, .4);
     border: 1px solid;
     border-radius: var(--round);
