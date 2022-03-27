@@ -1,7 +1,7 @@
 // import React from "react";
 import {useState, useEffect} from "react"
 import WordleGrid from "./WordleGrid";
-import Letters from "./Letters";
+import Keyboard from "./Keyboard";
 import "./css/WordleHandler.css";
 import en_letter_primes from "./data/en-letter-primes.json"
 import en_words_5_letters from "./data/en-5-letters.json";
@@ -50,6 +50,14 @@ function WordleHandler()
     const cloneArray = (cpy) => cpy.map( val => [...val]);
 
     const inputChar = (ch) => {
+        if (ch.length > 1) {
+            switch (ch) {
+                case "NEXT": selectWord(); return;
+                case "ENTER": nextGuess(); return;
+                case "DEL": removeChar(); return;
+                default: return;
+            }
+        }
         if (activeCol < colCount) {
             guesses[activeRow][activeCol] = ch;
             let col = activeCol + 1
@@ -108,6 +116,8 @@ function WordleHandler()
                 if ((pc >=0) && ((curScore % pc) === 0)) {
                     coloring[i] = -1
                     curScore /= pc
+                } else {
+                    document.getElementById("key" + curGuess[i]).disabled  = true;
                 }
             }
         }
@@ -121,16 +131,11 @@ function WordleHandler()
     return (
         <>
         <div id="game-header">
-            <h1>Wordle</h1>
+            <h3>Wordle</h3>
             <p>{gameStr()}</p>
         </div>
         <WordleGrid activeCol={activeCol} activeRow={activeRow} guesses={guesses} coloringCall={getColoring} visible={"true"} />
-        <Letters callBack={inputChar} visible={"true"} disabled={!gameOn()}/>
-        <div id="game-control">
-            <button disabled={(activeCol == 0) || !gameOn()} onClick={removeChar}>Del</button>
-            <button disabled={!canGuess} onClick={nextGuess}>{canGuess ? `Guess '${guesses[activeRow].join("")}'`: "Enter word"}</button>
-            <button onClick={selectWord}>{!gameOn() ? "New word" : "Skip word"}</button>
-        </div>
+        <Keyboard callBack={inputChar} disabled={{letters: !gameOn(), delkey: (activeCol == 0) || !gameOn(), enter: !canGuess, next: !gameOn()}}/>
         </>
     );
 }
