@@ -116,7 +116,7 @@ function WordleHandler()
                 if ((pc >=0) && ((curScore % pc) === 0)) {
                     coloring[i] = -1
                     curScore /= pc
-                } else {
+                } else if (primeScore % pc != 0) {
                     document.getElementById("key" + curGuess[i]).disabled  = true;
                 }
             }
