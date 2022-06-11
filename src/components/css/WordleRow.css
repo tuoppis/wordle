@@ -1,31 +1,30 @@
 .wordle {
     --width: minmax(60px, 15vw);
-    --round: calc(var(--round) * 0.1);
-    display: block;
-    width: var(--width);
-    height: var(--width);
+    display: flex;
+    min-width: 100%;
+    min-height: 100%;
+    align-items: center;
+    justify-content: center;
     font-size: 2rem;
     font-weight: bold;
-    margin: 0;
     padding: 0;
-    justify-items: center;
-    background-color: rgba(0, 0, 255, .4);
+    /* background-color: rgba(0, 0, 255, .4); */
+    background-color: hsl(240deg, 100%, 30%);
     border: 1px solid;
-    border-radius: var(--round);
 }
 .wordle > p {
-    margin: auto;
+    text-align:center;
     padding: 0;
 }
 
 .active {
-    background-color: rgba(0, 255, 255, .4);
+    background-color: hsl(240deg, 80%, 50%);
 }
 
 .wrong-pos {
-    background-color: rgba(255, 255, 0, .4);
+    background-color: hsl(45deg, 80%, 30%);
 }
 
 .right-pos {
-    background-color: rgba(0, 255, 0, .4);
+    background-color: hsl(120deg, 80%, 30%);
 }

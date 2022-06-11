@@ -1,21 +1,20 @@
 #keyboard {
     display: grid;
     grid-template-columns: auto, auto;
-    grid-template-rows: 20px 20px 20px;
+    grid-template-rows: repeat(3, auto);
     gap: 5px;
     align-items: center;
     justify-items: center;
 }
 
 .keyrow, .key-control {
-    /* pointer-events: none; */
     align-content: center;
     justify-content: center;
     margin: 0;
 }
 
 .keyrow > button {
-    min-width: 25px;
+    min-width: 5vmin;
     margin: 0;
 }
 
@@ -24,7 +23,7 @@
     margin:0;
 }
 
-#keyboard > button {
+#keyboard button {
     border: 1px solid;
     font-size: 1rem;
 }
