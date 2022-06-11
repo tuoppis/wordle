@@ -1,19 +1,32 @@
 #keyboard {
     display: grid;
     grid-template-columns: auto, auto;
+    grid-template-rows: 20px 20px 20px;
+    gap: 5px;
     align-items: center;
     justify-items: center;
 }
 
-.keyrow {
+.keyrow, .key-control {
+    /* pointer-events: none; */
     align-content: center;
     justify-content: center;
+    margin: 0;
+}
+
+.keyrow > button {
+    min-width: 25px;
+    margin: 0;
+}
+
+.key-control > button {
+    min-width: 50px;
+    margin:0;
 }
 
 #keyboard > button {
     border: 1px solid;
     font-size: 1rem;
-    /* font-style: italic; */
 }
 
 #keyrow1 {

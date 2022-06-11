@@ -3,11 +3,9 @@
     --rows: 6;
     --gap: 5px;
     display: grid;
-    /* min-width: minmax(200px, 80vw); */
-    /* min-height: minmax(200px, 80vw); */
     gap: var(--gap);
-    grid-template-columns: repeat(var(--columns), minmax(50px, 10vmin));
-    grid-template-rows: repeat(var(--rows), minmax(50px, 10vmin));
+    grid-template-columns: repeat(var(--columns), 50px);
+    grid-template-rows: repeat(var(--rows), 50px);
     justify-content: stretch;
     align-content: stretch;
 }
