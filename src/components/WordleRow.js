@@ -10,11 +10,13 @@ function WordleRow({ typedInput, typePos, coloringCall, isActiveRow }) {
     switch (code) {
       case -1:
         return cName + " wrong-pos";
+      case 0:
+        return cName;
       case 1:
         return cName + " right-pos";
       default:
+        return cName + " can-guess";
     }
-    return cName;
   };
 
   useEffect(() => setColoring(coloringCall()), [isActiveRow, coloringCall]);

@@ -21,6 +21,10 @@
     background-color: hsl(240deg, 80%, 50%);
 }
 
+.can-guess {
+    background-color: hsl(240deg, 80%, 50%);
+}
+
 .wrong-pos {
     background-color: hsl(45deg, 80%, 30%);
 }

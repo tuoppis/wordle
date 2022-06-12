@@ -23,8 +23,14 @@ function ArrayOfArrays(rows, cols, val) {
   return arr;
 }
 
+const wordObj = Object.entries(en_words_5_letters).reduce((obj, entry) => {
+  const [key, value] = entry;
+  obj[key.toUpperCase()] = value;
+  return obj;
+}, {});
+
 function WordleHandler() {
-  let [wordList, setWordList] = useState(Object.keys(en_words_5_letters).map((x) => x.toUpperCase()));
+  let [wordList, setWordList] = useState(Object.keys(wordObj));
   let [word, setWord] = useState(null);
   let [primeScore, setPrimeScore] = useState(0);
   let [guesses, setGuesses] = useState(ArrayOfArrays(RowCount, ColCount, ""));
@@ -34,24 +40,15 @@ function WordleHandler() {
   let [rowCount, setRowCount] = useState(RowCount);
   let [colCount, setColCount] = useState(ColCount);
   let [gameState, setGameState] = useState(0); // 0: game on, 1: game won, -1: game lost
+  let [message, setMessage] = useState("Guess the word!");
 
   const selectWord = () => {
     let word = wordList[Math.floor(wordList.length * Math.random())];
     setWord(word);
     setPrimeScore(calcPrimeScore(word)); //en_words_5_letters[word]);
     setGuesses(ArrayOfArrays(rowCount, colCount, ""));
-
-    // for (let child of document.getElementById("keyrow1").children) {
-    //   child.disabled = false;
-    // }
-    // for (let child of document.getElementById("keyrow2").children) {
-    //   child.disabled = false;
-    // }
-    // for (let child of document.getElementById("keyrow3").children) {
-    //   child.disabled = false;
-    // }
-
     setCanGuess(false);
+    setMessage("Guess the word!");
     setActiveRow(0);
     setActiveCol(0);
     setGameState(0);
@@ -84,8 +81,14 @@ function WordleHandler() {
       guesses[activeRow][activeCol] = ch;
       let col = activeCol + 1;
       setActiveCol(col);
-      setGuesses(guesses); //.map((val)=>[...val]));
-      setCanGuess(activeRow < rowCount && col >= colCount);
+      const inputWord = guesses[activeRow].join("");
+      let maybeGuess = activeRow < rowCount && col >= colCount;
+      if (maybeGuess) {
+        maybeGuess = maybeGuess && inputWord in wordObj;
+        if (!maybeGuess) setMessage(`'${inputWord}' is not in the dictionary!`);
+        else setMessage(`To guess '${inputWord}' press 'Enter'`);
+      }
+      setCanGuess(maybeGuess);
     }
   };
 
@@ -93,38 +96,28 @@ function WordleHandler() {
     if (activeCol === 0) return;
     let col = activeCol - 1;
     setActiveCol(col);
+    setCanGuess(false);
+    setMessage("Guess the word!");
     guesses[activeRow][col] = "";
-    setGuesses(guesses);
   };
 
   const gameOn = () => gameState === 0;
 
-  const gameStr = () => {
-    switch (gameState) {
-      case -1:
-        return `Defeated by '${word}'!`;
-      case 0:
-        return `You have ${rowCount - activeRow} ${activeRow < rowCount ? "tries" : "try"} left!`;
-      case 1:
-        return `Victory on your ${numNames[activeRow]} guess!`;
-      default:
-        return "Unknown state!";
-    }
-  };
-
   const nextGuess = () => {
-    //console.log(word, guesses[activeRow].join(""));
     if (guesses[activeRow].join("") === word) {
       setGameState(1);
+      setMessage(`Victory on your ${numNames[activeRow + 1]} guess!`);
     } else if (activeRow === rowCount - 1) {
       setGameState(-1);
-    }
+      setMessage(`Defeated by '${word}'!`);
+    } else setMessage(`You have ${rowCount - activeRow - 1} ${activeRow < rowCount ? "tries" : "try"} left!`);
     setActiveRow(activeRow + 1);
     setCanGuess(false);
     setActiveCol(0);
   };
 
   const getColoring = (idx) => {
+    if (idx === activeRow && canGuess) return Array(colCount).fill(2);
     let coloring = Array(colCount).fill(0);
     let curScore = primeScore;
     let curGuess = guesses[idx];
@@ -156,7 +149,7 @@ function WordleHandler() {
     <>
       <div id="game-header">
         <h3>Wordle</h3>
-        <p>{gameStr()}</p>
+        <p>{message}</p>
       </div>
       <WordleGrid
         activeCol={activeCol}
