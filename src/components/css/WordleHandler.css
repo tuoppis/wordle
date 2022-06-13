@@ -4,3 +4,13 @@
 #game-header > * {
     margin: 0;
 }
+
+#game-area {
+    display: flex;
+}
+
+@media screen and (max-width: 700px) {
+    #game-area {
+        display: block;
+    }
+}

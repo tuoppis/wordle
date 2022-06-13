@@ -54,13 +54,6 @@ function WordleHandler() {
     setGameState(0);
   };
 
-  const clearArray = () => {
-    for (let r of guesses) for (let i in r) r[i] = "";
-    setGuesses(guesses);
-  };
-
-  const cloneArray = (cpy) => cpy.map((val) => [...val]);
-
   const inputChar = (ch) => {
     if (ch.length > 1) {
       switch (ch) {
@@ -151,17 +144,19 @@ function WordleHandler() {
         <h3>Wordle</h3>
         <p>{message}</p>
       </div>
-      <WordleGrid
-        activeCol={activeCol}
-        activeRow={activeRow}
-        guesses={guesses}
-        coloringCall={getColoring}
-        visible={"true"}
-      />
-      <Keyboard
-        callBack={inputChar}
-        disabled={{ letters: !gameOn(), delkey: activeCol === 0 || !gameOn(), enter: !canGuess, next: !gameOn() }}
-      />
+      <div id="game-area">
+        <WordleGrid
+          activeCol={activeCol}
+          activeRow={activeRow}
+          guesses={guesses}
+          coloringCall={getColoring}
+          visible={"true"}
+        />
+        <Keyboard
+          callBack={inputChar}
+          disabled={{ letters: !gameOn(), delkey: activeCol === 0 || !gameOn(), enter: !canGuess, next: !gameOn() }}
+        />
+      </div>
     </>
   );
 }

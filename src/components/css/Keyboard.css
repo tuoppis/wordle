@@ -1,59 +1,79 @@
 #keyboard {
-    display: grid;
+    display: block;
+    margin: auto;
+    margin-inline: 10px;
+    /* display: grid;
     grid-template-columns: auto, auto;
     grid-template-rows: repeat(3, auto);
     gap: 5px;
     align-items: center;
-    justify-items: center;
+    justify-items: center; */
+}
+
+#control-key-row {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 10px;
+    /* justify-content: space-between; */
 }
 
 .keyrow, .key-control {
-    align-content: center;
+    /* align-content: center;
     justify-content: center;
-    margin: 0;
+    margin: 0; */
+}
+
+.key-control {
+    /* flex-grow: 1; */
+    margin: 5px
 }
 
 .keyrow > button {
     min-width: 5vmin;
     margin: 0;
+    height: 80%;
 }
 
 .key-control > button {
     min-width: 50px;
+    font-weight: bold;
     margin:0;
+    border-radius: 20px;
+    height: 100%;
+    width: 80%;
 }
 
 #keyboard button {
     border: 1px solid;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 #keyrow1 {
-    grid-column: 1/1;
-    grid-row: 1/1;
+    /* grid-column: 1/1;
+    grid-row: 1/1; */
 }
 
 #keyrow2 {
-    grid-column: 1/1;
-    grid-row: 2/2;
+    /* grid-column: 1/1;
+    grid-row: 2/2; */
 }
 
 #keyrow3 {
-    grid-column: 1/1;
-    grid-row: 3/3;
+    /* grid-column: 1/1;
+    grid-row: 3/3; */
 }
 
 #keyDEL {
-    grid-column: 2/2;
-    grid-row: 1/1;
+    /* grid-column: 2/2;
+    grid-row: 1/1; */
 }
 
 #keyENTER {
-    grid-column: 2/2;
-    grid-row: 2/2;
+    /* grid-column: 2/2;
+    grid-row: 2/2; */
 }
 
 #keyNEXT {
-    grid-column: 2/2;
-    grid-row: 3/3;
+    /* grid-column: 2/2;
+    grid-row: 3/3; */
 }

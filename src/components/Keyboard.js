@@ -62,10 +62,12 @@ function ControlButton({ callBack, disabled, name, text }) {
 function Keyboard({ callBack, disabled }) {
   return (
     <div id="keyboard">
+      <div id="control-key-row">
+        <ControlButton callBack={callBack} disabled={disabled.delkey} name="Del" />
+        <ControlButton callBack={callBack} disabled={disabled.enter} name="Enter" />
+        <ControlButton callBack={callBack} disabled={false} name="Next" text={disabled.next ? "New" : "Skip"} />
+      </div>
       <Letters callBack={callBack} disabled={disabled.letters} />
-      <ControlButton callBack={callBack} disabled={disabled.delkey} name="Del" />
-      <ControlButton callBack={callBack} disabled={disabled.enter} name="Enter" />
-      <ControlButton callBack={callBack} disabled={false} name="Next" text={disabled.next ? "New" : "Skip"} />
     </div>
   );
 }
