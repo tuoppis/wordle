@@ -8,6 +8,7 @@ import en_words_5_letters from "./data/en-5-letters.json";
 
 let RowCount = 6;
 let ColCount = 5;
+const defaultMessage = "Type in a word...";
 
 const primeCodeFor = (charCode) => en_letter_primes[charCode - 0x41];
 const numNames = ["nilth", "first", "second", "third", "fourth", "fifth", "sixth"];
@@ -40,15 +41,16 @@ function WordleHandler() {
   let [rowCount, setRowCount] = useState(RowCount);
   let [colCount, setColCount] = useState(ColCount);
   let [gameState, setGameState] = useState(0); // 0: game on, 1: game won, -1: game lost
-  let [message, setMessage] = useState("Guess the word!");
+  let [message, setMessage] = useState(defaultMessage);
 
+  const gameOn = () => gameState === 0;
   const selectWord = () => {
     let word = wordList[Math.floor(wordList.length * Math.random())];
     setWord(word);
     setPrimeScore(calcPrimeScore(word)); //en_words_5_letters[word]);
     setGuesses(ArrayOfArrays(rowCount, colCount, ""));
     setCanGuess(false);
-    setMessage("Guess the word!");
+    setMessage(defaultMessage);
     setActiveRow(0);
     setActiveCol(0);
     setGameState(0);
@@ -58,6 +60,10 @@ function WordleHandler() {
     if (ch.length > 1) {
       switch (ch) {
         case "NEXT":
+          if (gameOn()) {
+            if (!window.confirm("Are you sure you want to skip word?")) return;
+            document.querySelectorAll(".letter").forEach((letter) => (letter.disabled = false));
+          }
           selectWord();
           return;
         case "ENTER":
@@ -79,7 +85,7 @@ function WordleHandler() {
       if (maybeGuess) {
         maybeGuess = maybeGuess && inputWord in wordObj;
         if (!maybeGuess) setMessage(`'${inputWord}' is not in the dictionary!`);
-        else setMessage(`To guess '${inputWord}' press 'Enter'`);
+        else setMessage(`Guess '${inputWord}'?`);
       }
       setCanGuess(maybeGuess);
     }
@@ -90,11 +96,9 @@ function WordleHandler() {
     let col = activeCol - 1;
     setActiveCol(col);
     setCanGuess(false);
-    setMessage("Guess the word!");
+    setMessage(defaultMessage);
     guesses[activeRow][col] = "";
   };
-
-  const gameOn = () => gameState === 0;
 
   const nextGuess = () => {
     if (guesses[activeRow].join("") === word) {
@@ -141,8 +145,8 @@ function WordleHandler() {
   return (
     <>
       <div id="game-header">
-        <h3>Wordle</h3>
-        <p>{message}</p>
+        <h1>Wordle</h1>
+        {/* <p>{message}</p> */}
       </div>
       <div id="game-area">
         <WordleGrid
@@ -153,6 +157,7 @@ function WordleHandler() {
           visible={"true"}
         />
         <Keyboard
+          message={message}
           callBack={inputChar}
           disabled={{ letters: !gameOn(), delkey: activeCol === 0 || !gameOn(), enter: !canGuess, next: !gameOn() }}
         />
