@@ -1,5 +1,5 @@
 #game-header {
-    display: block;
+    display: none;
 }
 #game-header > * {
     margin: 0;
@@ -11,6 +11,9 @@
 
 @media screen and (max-width: 700px) {
     #game-area {
+        display: block;
+    }
+    #game-header  {
         display: block;
     }
 }

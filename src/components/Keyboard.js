@@ -62,6 +62,7 @@ function ControlButton({ callBack, disabled, name, text }) {
 function Keyboard({ message, callBack, disabled }) {
   return (
     <div id="keyboard">
+      <h1>Wordle</h1>
       <p>{message}</p>
       <div id="control-key-row">
         <ControlButton callBack={callBack} disabled={disabled.delkey} name="Del" text="˂˂" />

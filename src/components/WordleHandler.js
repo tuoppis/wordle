@@ -146,7 +146,6 @@ function WordleHandler() {
     <>
       <div id="game-header">
         <h1>Wordle</h1>
-        {/* <p>{message}</p> */}
       </div>
       <div id="game-area">
         <WordleGrid
