@@ -21,7 +21,7 @@
 }
 
 .keyrow > button {
-    min-width: 5vmin;
+    min-width: 5vw;
     margin: 0;
     height: 80%;
 }
@@ -45,4 +45,5 @@
     #keyboard > h1 {
         display: none;
     }
+    .keyrow > button { min-width: 9vw; }
 }

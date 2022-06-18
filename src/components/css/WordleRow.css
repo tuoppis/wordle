@@ -1,5 +1,5 @@
 .wordle {
-    --width: minmax(60px, 15vw);
+    /* --width: minmax(60px, 15vw); */
     display: flex;
     min-width: 100%;
     min-height: 100%;
